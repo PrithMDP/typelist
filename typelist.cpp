@@ -131,6 +131,10 @@ int main() {
     WhichType<intersection<Tlist<short,float>,Tlist<int,double,short,float>,Tlist<>>::val> union_list;
     WhichType<combiner<Tlist<short>,Tlist<int,double,char,float>,Tlist<>>::val> intersection_list;
     
+    //Intersection of intersection
+    WhichType<intersection<Tlist<short>, intersection< Tlist<short>,Tlist<short,float>,Tlist<> >::val, Tlist<>>::val> union_list;
+
+    
 }
 
 
