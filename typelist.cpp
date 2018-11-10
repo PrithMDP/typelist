@@ -133,7 +133,7 @@ struct intersection< Tlist<A,L1...>, Tlist<B,L2...>,Tlist<R1...> >
 int main() {
     
     // using this type struct to check which types are infact contained in the alias 'val'
-    // 
+    // comment either to make the other fail :) 
     WhichType<intersection<Tlist<short,float>,Tlist<int,double,short,float>,Tlist<>>::val> g;
     WhichType<combiner<Tlist<short>,Tlist<int,double,char,float>,Tlist<>>::val> g;
     
