@@ -3,7 +3,7 @@
 #include <string>
 #include <type_traits>
 
-using namespace std; // forgive me 
+using namespace std;
 
 template <typename T>
 struct WhichType;
@@ -15,6 +15,7 @@ struct Tlist
     Tlist<Args...,AddType> append_type()
     {
         return {};
+        
     }
 };
 
@@ -104,21 +105,15 @@ struct intersection<Tlist<>, Tlist<>, Tlist<R1...>>
 {
     using val = Tlist<R1...>;
 };
-//if either list is empty we are done!
+//if first list is empty we are done!
 template <typename A, typename... L1, typename... R1>
 struct intersection<Tlist<>, Tlist<A,L1...>, Tlist<R1...>>
 {
     using val = Tlist<R1...>;
 };
 
-template <typename A, typename... L1, typename... R1>
-struct intersection<Tlist<A,L1...>, Tlist<>, Tlist<R1...>>
-{
-    using val = Tlist<R1...>;
-};
-
-template <typename A, typename B, typename... L1, typename... L2, typename... R1>
-struct intersection< Tlist<A,L1...>, Tlist<B,L2...>,Tlist<R1...> >
+template <typename A, typename... L1, typename... L2, typename... R1>
+struct intersection< Tlist<A,L1...>, Tlist<L2...>,Tlist<R1...> >
 {
     static const bool AExistsinB = exists<A,L2...>::val;
     static const bool AExistsinR = exists<A,R1...>::val;
@@ -133,9 +128,8 @@ struct intersection< Tlist<A,L1...>, Tlist<B,L2...>,Tlist<R1...> >
 int main() {
     
     // using this type struct to check which types are infact contained in the alias 'val'
-    // comment either to make the other fail :) 
-    WhichType<intersection<Tlist<short,float>,Tlist<int,double,short,float>,Tlist<>>::val> g;
-    WhichType<combiner<Tlist<short>,Tlist<int,double,char,float>,Tlist<>>::val> g;
+    WhichType<intersection<Tlist<short,float>,Tlist<int,double,short,float>,Tlist<>>::val> union_list;
+    WhichType<combiner<Tlist<short>,Tlist<int,double,char,float>,Tlist<>>::val> intersection_list;
     
 }
 
