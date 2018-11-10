@@ -59,7 +59,7 @@ This is the most interesting portion: I peel off the types one by one, check if 
 
 I use the helper struct `exists` to loop over the `variadic params`.
 
-When the first list becomes empty, it hits the other specialization and we are done! 
+When the first list becomes empty, the recursive call `intersection<Tlist<L1...>,Tlist<L2...>,lst>::val` hits the empty first list  specialization and we are done! 
 ```
 template <typename A, typename... L1, typename... L2, typename... R1>
 struct intersection< Tlist<A,L1...>, Tlist<L2...>,Tlist<R1...> >
